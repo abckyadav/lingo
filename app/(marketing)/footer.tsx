@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 type FooterProps = {
@@ -10,7 +10,7 @@ type FooterProps = {
 export default function Footer({ className, style }: FooterProps) {
   return (
     <div
-      className={clsx(
+      className={cn(
         "hidden lg:block h-20 w-full border-t-2 border-slate-200 p-2",
         className
       )}

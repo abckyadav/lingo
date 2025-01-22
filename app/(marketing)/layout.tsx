@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Header from "./header";
 import Footer from "./footer";
 
@@ -14,10 +14,7 @@ export default function MarketingLayout({
   style,
 }: MarketingLayoutProps) {
   return (
-    <div
-      className={clsx("min-h-screen flex flex-col ", className)}
-      style={style}  
-    >
+    <div className={cn("min-h-screen flex flex-col ", className)} style={style}>
       <Header />
       <main className="flex flex-1 flex-col items-center justify-center">
         {children}

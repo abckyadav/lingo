@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Loader } from "lucide-react";
 import {
@@ -19,10 +19,7 @@ type HeaderProps = {
 export default function Header({ className, style }: HeaderProps) {
   return (
     <div
-      className={clsx(
-        "h-20 w-full border-b-2 border-slate-200 px-4",
-        className
-      )}
+      className={cn("h-20 w-full border-b-2 border-slate-200 px-4", className)}
       style={style}
     >
       <div className="lg:max-w-screen-lg mx-auto flex items-center justify-between h-full">
@@ -36,7 +33,7 @@ export default function Header({ className, style }: HeaderProps) {
           <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
         </ClerkLoading>
         <ClerkLoaded>
-          <SignedIn >
+          <SignedIn>
             <UserButton />
           </SignedIn>
           <SignedOut>
