@@ -20,10 +20,10 @@ export default function Home() {
 
       <div className="flex flex-col items-center gap-y-8">
         <h1 className="text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center">
-          Learn, practise and master new languages with Lingo!.
+          Learn, practise and master new languages with Lingo!
         </h1>
 
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col items-center gap-y-4 max-w-[330px] w-full">
           <ClerkLoading>
             <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
           </ClerkLoading>
