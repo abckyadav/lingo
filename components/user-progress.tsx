@@ -29,7 +29,7 @@ export default function UserProgress({
       className={cn("flex items-center justify-between gap-x-2", className)}
       style={style}
     >
-      <Link href="/course">
+      <Link href="/courses">
         <Button variant="ghost">
           <Image
             src={activeCourse.imageSrc}
