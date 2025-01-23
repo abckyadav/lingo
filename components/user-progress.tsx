@@ -3,14 +3,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { InfinityIcon } from "lucide-react";
+import { courses } from "@/db/schema";
 
 type UserProgressProps = {
   className?: string;
   style?: React.CSSProperties;
-  activeCourse: {
-    title: string;
-    imageSrc: string;
-  }; //TODO: replace with DB type
+  activeCourse: typeof courses.$inferSelect;
   hearts: number;
   points: number;
   hasActiveSubscription: boolean;
@@ -38,7 +36,6 @@ export default function UserProgress({
             height={32}
             className="rounded-md border"
           />
-          User Progress
         </Button>
       </Link>
       <Link href="/shop">

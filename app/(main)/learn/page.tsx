@@ -28,17 +28,14 @@ export default async function LearnPage({ className, style }: LearnPageProps) {
     >
       <StickyWrapper>
         <UserProgress
-          activeCourse={{
-            title: userProgress.activeCourse.title,
-            imageSrc: userProgress.activeCourse.imageSrc,
-          }}
+          activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts}
           points={userProgress.points}
           hasActiveSubscription={false}
         />
       </StickyWrapper>
       <FeedWrapper>
-        <Header title={userProgress.activeCourse.title } />
+        <Header title={userProgress.activeCourse.title} />
       </FeedWrapper>
     </div>
   );
