@@ -1,0 +1,4 @@
+export enum CHALLENGE_TYPE_ENUM {
+  SELECT = "SELECT",
+  ASSIST = "ASSIST",
+}
