@@ -51,7 +51,7 @@ export default function LessonButton({
 
   const Icon = isCompleted ? Check : isLast ? Crown : Star;
 
-  const href = isCompleted ? `/lession/${id}` : "/lesson";
+  const href = isCompleted ? `/lesson/${id}` : "/lesson";
 
   return (
     <div className={cn("", className)} style={style}>
@@ -61,7 +61,7 @@ export default function LessonButton({
         style={{ pointerEvents: locked ? "none" : "auto" }}
       >
         <div
-          className="relative"
+          className="relative -z-10"
           style={{
             right: `${rightPosition}px`,
             marginTop: isFirst && !isCompleted ? 60 : 24,

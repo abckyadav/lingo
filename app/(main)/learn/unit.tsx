@@ -24,8 +24,6 @@ type UnitProps = {
 export default function Unit({
   className,
   style,
-  id,
-  order,
   description,
   title,
   lessons,
