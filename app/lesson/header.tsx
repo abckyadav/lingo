@@ -1,5 +1,6 @@
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
+import { useExitModal } from "@/store/use-exit-modal";
 import { InfinityIcon, X } from "lucide-react";
 import Image from "next/image";
 
@@ -18,6 +19,8 @@ export default function Header({
   percentage,
   hasActiveSubscription,
 }: HeaderProps) {
+  const { open } = useExitModal();
+
   return (
     <header
       className={cn(
@@ -27,7 +30,7 @@ export default function Header({
       style={style}
     >
       <X
-        onClick={() => {}} // TODO: add onclick exit
+        onClick={open}
         className="text-slate-500 hover:opacity-75 transition cursor-pointer"
       />
 
