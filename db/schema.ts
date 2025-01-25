@@ -14,7 +14,7 @@ export const courses = pgTable("courses", {
   imageSrc: text("image_src").notNull(),
 });
 
-export const courseRelations = relations(courses, ({ many }) => ({
+export const coursesRelations = relations(courses, ({ many }) => ({
   userProgress: many(userProgress),
   units: many(units),
 }));
@@ -48,7 +48,7 @@ export const lessons = pgTable("lessons", {
   order: integer("order").notNull(),
 });
 
-export const lessonRelations = relations(lessons, ({ one, many }) => ({
+export const lessonsRelations = relations(lessons, ({ one, many }) => ({
   unit: one(units, {
     fields: [lessons.unitId],
     references: [units.id],
@@ -128,7 +128,7 @@ export const userProgress = pgTable("user_progress", {
   points: integer("points").notNull().default(0),
 });
 
-export const courseProgressRelations = relations(userProgress, ({ one }) => ({
+export const userProgressRelations = relations(userProgress, ({ one }) => ({
   activeCourse: one(courses, {
     fields: [userProgress.activeCourseId],
     references: [courses.id],

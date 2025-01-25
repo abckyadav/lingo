@@ -3,8 +3,14 @@ import StickyWrapper from "@/components/sticky-wrapper";
 import { cn } from "@/lib/utils";
 import Header from "./header";
 import UserProgress from "@/components/user-progress";
-import { getUnits, getUserProgress } from "@/db/queries";
+import {
+  getCourseProgress,
+  getLessonPercentage,
+  getUnits,
+  getUserProgress,
+} from "@/db/queries";
 import { redirect } from "next/navigation";
+import Unit from "./unit";
 
 type LearnPageProps = {
   className?: string;
@@ -12,15 +18,24 @@ type LearnPageProps = {
 };
 
 export default async function LearnPage({ className, style }: LearnPageProps) {
-  const userProgressData = getUserProgress();
   const unitsData = getUnits();
+  const userProgressData = getUserProgress();
+  const courseProgressData = getCourseProgress();
+  const lessonPercentageData = getLessonPercentage();
 
-  const [userProgress, units] = await Promise.all([
-    userProgressData,
-    unitsData,
-  ]);
+  const [units, userProgress, courseProgress, lessonPercentage] =
+    await Promise.all([
+      unitsData,
+      userProgressData,
+      courseProgressData,
+      lessonPercentageData,
+    ]);
 
   if (!userProgress || !userProgress.activeCourse) {
+    redirect("/courses");
+  }
+
+  if (!courseProgress) {
     redirect("/courses");
   }
 
@@ -42,7 +57,15 @@ export default async function LearnPage({ className, style }: LearnPageProps) {
 
         {units.map((unit) => (
           <div className="mb-10" key={unit.id}>
-            {JSON.stringify(unit)}
+            <Unit
+              id={unit.id}
+              order={unit.order}
+              description={unit.description}
+              title={unit.title}
+              lessons={unit.lessons}
+              activeLesson={courseProgress.activeLesson}
+              activeLessonPercentage={lessonPercentage}
+            />
           </div>
         ))}
       </FeedWrapper>
