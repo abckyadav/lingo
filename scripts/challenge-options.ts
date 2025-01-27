@@ -1,6 +1,5 @@
 export const CHALLENGE_OPTIONS = [
   {
-    id: 1,
     challengeId: 1,
     imageSrc: "/man.svg",
     correct: true,
@@ -8,7 +7,6 @@ export const CHALLENGE_OPTIONS = [
     audioSrc: "/es_man.mp3",
   },
   {
-    id: 2,
     challengeId: 1,
     imageSrc: "/woman.svg",
     correct: false,
@@ -16,8 +14,67 @@ export const CHALLENGE_OPTIONS = [
     audioSrc: "/es_woman.mp3",
   },
   {
-    id: 3,
     challengeId: 1,
+    imageSrc: "/robot.svg",
+    correct: false,
+    text: "el robot",
+    audioSrc: "/es_robot.mp3",
+  },
+  {
+    challengeId: 2,
+    correct: true,
+    text: "el hombre",
+    audioSrc: "/es_man.mp3",
+  },
+  {
+    challengeId: 2,
+    correct: false,
+    text: "la mujer",
+    audioSrc: "/es_woman.mp3",
+  },
+  {
+    challengeId: 2,
+    correct: false,
+    text: "el robot",
+    audioSrc: "/es_robot.mp3",
+  },
+  {
+    challengeId: 3,
+    imageSrc: "/man.svg",
+    correct: false,
+    text: "el hombre",
+    audioSrc: "/es_man.mp3",
+  },
+  {
+    challengeId: 3,
+    imageSrc: "/woman.svg",
+    correct: false,
+    text: "la mujer",
+    audioSrc: "/es_woman.mp3",
+  },
+  {
+    challengeId: 3,
+    imageSrc: "/robot.svg",
+    correct: true,
+    text: "el robot",
+    audioSrc: "/es_robot.mp3",
+  },
+  {
+    challengeId: 4,
+    imageSrc: "/man.svg",
+    correct: false,
+    text: "el hombre",
+    audioSrc: "/es_man.mp3",
+  },
+  {
+    challengeId: 4,
+    imageSrc: "/woman.svg",
+    correct: true,
+    text: "la mujer",
+    audioSrc: "/es_woman.mp3",
+  },
+  {
+    challengeId: 4,
     imageSrc: "/robot.svg",
     correct: false,
     text: "el robot",
