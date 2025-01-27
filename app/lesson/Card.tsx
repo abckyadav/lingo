@@ -1,6 +1,8 @@
 import { challenges } from "@/db/schema";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useCallback } from "react";
+import { useAudio, useKey } from "react-use";
 
 type CardProps = {
   className?: string;
@@ -31,6 +33,17 @@ export default function Card({
   status,
   type,
 }: CardProps) {
+  const [audio, _, controls] = useAudio({ src: audioSrc || "" });
+
+  const handleClick = useCallback(() => {
+    if (disabled) return;
+
+    controls.play();
+    onClick();
+  }, [controls, disabled, onClick]);
+
+  useKey(shortcut, handleClick, {}, [handleClick]);
+
   return (
     <div
       className={cn(
@@ -48,8 +61,9 @@ export default function Card({
         className
       )}
       style={style}
-      onClick={onClick}
+      onClick={handleClick}
     >
+      {audio}
       {imageSrc ? (
         <div className="relative aspect-square mb-4 max-h-[80px] lg:max-h-[150px] w-full">
           <Image src={imageSrc} fill alt={text} />
