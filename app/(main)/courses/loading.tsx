@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 
 type LoadingProps = {
-  className: string;
-  style: React.CSSProperties;
+  className?: string;
+  style?: React.CSSProperties;
 };
 export default function Loading({ className, style }: LoadingProps) {
   return (
