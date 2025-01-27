@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
 type LessonLayoutProps = {
-  className: string;
-  style: React.CSSProperties;
+  className?: string;
+  style?: React.CSSProperties;
   children: React.ReactNode;
 };
 
