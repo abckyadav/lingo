@@ -1,18 +1,22 @@
 import { getLesson, getUserProgress } from "@/db/queries";
 import { cn } from "@/lib/utils";
 import { redirect } from "next/navigation";
-import Quiz from "./quiz";
+import Quiz from "../quiz";
 
-type LessonPageProps = {
+type LessonIdPageProps = {
   className?: string;
   style?: React.CSSProperties;
+  params: {
+    lessonId: number;
+  };
 };
 
 export default async function LessonPage({
   className,
   style,
-}: LessonPageProps) {
-  const lessonData = getLesson();
+  params,
+}: LessonIdPageProps) {
+  const lessonData = getLesson(params.lessonId);
   const userProgressData = getUserProgress();
 
   const [lesson, userProgress] = await Promise.all([
