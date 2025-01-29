@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { challengeOptions, challenges } from "@/db/schema";
-import { cn, defaultHearts } from "@/lib/utils";
+import { cn, defaultHearts, pointsPerChallenege } from "@/lib/utils";
 import { useState, useTransition } from "react";
 import Header from "./header";
 import QuestionBubble from "./question-bubble";
@@ -10,6 +11,11 @@ import Footer from "./footer";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { toast } from "sonner";
 import { reduceHearts } from "@/actions/user-progress";
+import { useAudio, useWindowSize } from "react-use";
+import Image from "next/image";
+import Confetti from "react-confetti";
+import ResultCard from "./result-card";
+import { useRouter } from "next/navigation";
 
 type QuizProps = {
   className?: string;
@@ -34,13 +40,26 @@ export default function Quiz({
   userSubscription,
   initialLessonChallenges,
 }: QuizProps) {
+  const { width, height } = useWindowSize();
+  const router = useRouter();
+
+  const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.wav" });
+  const [incorrectAudio, _i, incorrectControls] = useAudio({
+    src: "/incorrect.wav",
+  });
+  const [finishAudio] = useAudio({
+    src: "/finish.mp3",
+    autoPlay: true,
+  });
+
   const [pending, startTransition] = useTransition();
+  const [lessonId] = useState(initialLessonId);
   const [hearts, setHearts] = useState(initialHearts);
   const [percentage, setPercentage] = useState(initialPercentage);
   const [challenges] = useState(initialLessonChallenges);
   const [activeIndex, setActiveIndex] = useState(() => {
     const uncompletedIndex = challenges.findIndex(
-      (challenge) => !challenge.completed
+      (challenge) => !challenge.completed,
     );
 
     return uncompletedIndex === -1 ? 0 : uncompletedIndex;
@@ -89,6 +108,8 @@ export default function Quiz({
               console.error("Missing hearts");
               return;
             }
+
+            correctControls.play();
             setStatus("correct");
             setPercentage((prev) => prev + 100 / challenges.length);
 
@@ -107,6 +128,8 @@ export default function Quiz({
               console.error("Missing hearts");
               return;
             }
+
+            incorrectControls.play();
             setStatus("wrong");
 
             if (!response?.error) {
@@ -118,6 +141,52 @@ export default function Quiz({
     }
   };
 
+  if (!currentChallenge) {
+    return (
+      <>
+        {finishAudio}
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={500}
+          tweenDuration={10000}
+        />
+        <div className="mx-auto flex h-full max-w-lg flex-col items-center justify-center gap-y-4 text-center lg:gap-y-8">
+          <Image
+            src="/finish.svg"
+            alt="finish"
+            className="hidden lg:block"
+            height={100}
+            width={100}
+          />
+          <Image
+            src="/finish.svg"
+            alt="finish"
+            className="block lg:hidden"
+            height={50}
+            width={50}
+          />
+          <h1 className="text-xl font-bold text-neutral-700 lg:text-3xl">
+            Great job! <br /> You&apos;ve completed the lesson.
+          </h1>
+          <div className="flex w-full items-center gap-x-4">
+            <ResultCard
+              variant="points"
+              value={challenges.length * pointsPerChallenege}
+            />
+            <ResultCard variant="hearts" value={hearts} />
+          </div>
+        </div>
+        <Footer
+          lessonId={lessonId}
+          status="completed"
+          onCheck={() => router.push("/learn")}
+        />
+      </>
+    );
+  }
+
   const title =
     currentChallenge.type === "ASSIST"
       ? "Select the correct meaning"
@@ -125,6 +194,8 @@ export default function Quiz({
 
   return (
     <>
+      {incorrectAudio}
+      {correctAudio}
       <Header
         className={cn("", className)}
         style={style}
@@ -133,9 +204,9 @@ export default function Quiz({
         hasActiveSubscription={!!userSubscription?.isActive}
       />
       <div className="flex-1">
-        <div className="h-full flex items-center justify-center">
-          <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12">
-            <h1 className="text-lg lg:text-3xl text-center lg:text-start font-bold text-neutral-700">
+        <div className="flex h-full items-center justify-center">
+          <div className="flex w-full flex-col gap-y-12 px-6 lg:min-h-[350px] lg:w-[600px] lg:px-0">
+            <h1 className="text-center text-lg font-bold text-neutral-700 lg:text-start lg:text-3xl">
               {title}
             </h1>
             <div className="">
