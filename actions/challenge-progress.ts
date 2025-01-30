@@ -3,7 +3,7 @@
 import db from "@/db/drizzle";
 import { getUserProgress } from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
-import { defaultHearts, pointsPerChallenege } from "@/lib/utils";
+import { DEFAULT_HEARTS, POINTS_PER_CHALLENGE } from "@/lib/constants";
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -57,7 +57,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     await db
       .update(userProgress)
       .set({
-        hearts: Math.min(currentUserProgress.hearts + 1, defaultHearts),
+        hearts: Math.min(currentUserProgress.hearts + 1, DEFAULT_HEARTS),
         points: currentUserProgress.points + 10,
       })
       .where(eq(userProgress.userId, userId));
@@ -80,7 +80,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   await db
     .update(userProgress)
     .set({
-      points: currentUserProgress.points + pointsPerChallenege,
+      points: currentUserProgress.points + POINTS_PER_CHALLENGE,
     })
     .where(eq(userProgress.userId, userId));
 

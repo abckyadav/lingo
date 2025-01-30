@@ -2,7 +2,8 @@
 "use client";
 
 import { challengeOptions, challenges } from "@/db/schema";
-import { cn, defaultHearts, pointsPerChallenege } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { DEFAULT_HEARTS, POINTS_PER_CHALLENGE } from "@/lib/constants";
 import { useState, useTransition } from "react";
 import Header from "./header";
 import QuestionBubble from "./question-bubble";
@@ -126,7 +127,7 @@ export default function Quiz({
 
             //This is a practice
             if (initialPercentage === 100) {
-              setHearts((prev) => Math.min(prev + 1, defaultHearts));
+              setHearts((prev) => Math.min(prev + 1, DEFAULT_HEARTS));
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
@@ -184,7 +185,7 @@ export default function Quiz({
           <div className="flex w-full items-center gap-x-4">
             <ResultCard
               variant="points"
-              value={challenges.length * pointsPerChallenege}
+              value={challenges.length * POINTS_PER_CHALLENGE}
             />
             <ResultCard variant="hearts" value={hearts} />
           </div>

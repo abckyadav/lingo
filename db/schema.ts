@@ -1,4 +1,4 @@
-import { defaultHearts } from "@/lib/utils";
+import { DEFAULT_HEARTS } from "@/lib/constants";
 import { relations } from "drizzle-orm";
 import {
   boolean,
@@ -96,7 +96,7 @@ export const challengeOptionsRelations = relations(
       fields: [challengeOptions.challengeId],
       references: [challenges.id],
     }),
-  })
+  }),
 );
 
 export const challengeProgress = pgTable("challenge_progress", {
@@ -115,7 +115,7 @@ export const challengeProgressRelations = relations(
       fields: [challengeProgress.challengeId],
       references: [challenges.id],
     }),
-  })
+  }),
 );
 
 export const userProgress = pgTable("user_progress", {
@@ -125,7 +125,7 @@ export const userProgress = pgTable("user_progress", {
   activeCourseId: integer("active_course_id").references(() => courses.id, {
     onDelete: "cascade",
   }),
-  hearts: integer("hearts").notNull().default(defaultHearts),
+  hearts: integer("hearts").notNull().default(DEFAULT_HEARTS),
   points: integer("points").notNull().default(0),
 });
 
