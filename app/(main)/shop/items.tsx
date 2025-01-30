@@ -1,6 +1,7 @@
 "use client";
 
 import { refillHearts } from "@/actions/user-progress";
+import { createStripeUrl } from "@/actions/user-subscription";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_HEARTS, POINTS_TO_REFILL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -13,7 +14,7 @@ type ItemsProps = {
   style?: React.CSSProperties;
   hearts: number;
   points: number;
-  hasActiveSubscription: false;
+  hasActiveSubscription: boolean;
 };
 
 export default function Items({
@@ -34,6 +35,18 @@ export default function Items({
       refillHearts().catch(() =>
         toast.error("Something went wrong, while refill hearts"),
       );
+    });
+  };
+
+  const onUpgrade = () => {
+    startTransition(() => {
+      createStripeUrl()
+        .then((response) => {
+          if (response.data) {
+            window.location.href = response.data;
+          }
+        })
+        .catch(() => toast.error("Something went wrong, while upgrade"));
     });
   };
 
@@ -60,6 +73,19 @@ export default function Items({
               <p>{POINTS_TO_REFILL}</p>
             </div>
           )}
+        </Button>
+      </div>
+
+      <div className="flex w-full items-center gap-x-4 border-t-2 p-4 pt-8">
+        <Image src="/unlimited.svg" alt="unlimited" height={60} width={60} />
+        <div className="flex-1">
+          <p className="text-base font-bold text-neutral-700 lg:text-xl">
+            Unlimited hearts
+          </p>
+        </div>
+
+        <Button onClick={onUpgrade} disabled={pending || hasActiveSubscription}>
+          {hasActiveSubscription ? "active" : "upgrade"}
         </Button>
       </div>
     </ul>
