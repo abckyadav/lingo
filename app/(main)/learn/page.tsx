@@ -12,6 +12,8 @@ import {
 } from "@/db/queries";
 import { redirect } from "next/navigation";
 import Unit from "./unit";
+import Promo from "../../../components/promo";
+import Quests from "@/components/quests";
 
 type LearnPageProps = {
   className?: string;
@@ -61,6 +63,8 @@ export default async function LearnPage({ className, style }: LearnPageProps) {
           points={userProgress.points}
           hasActiveSubscription={isPro}
         />
+        {!isPro ? <Promo /> : null}
+        <Quests />
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />

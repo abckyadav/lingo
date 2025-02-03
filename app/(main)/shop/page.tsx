@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import Items from "./items";
+import Promo from "../../../components/promo";
 
 type ShopPageProps = {
   className?: string;
@@ -39,6 +40,8 @@ export default async function ShopPage({ className, style }: ShopPageProps) {
           points={userProgress.points}
           hasActiveSubscription={isPro}
         />
+
+        {!isPro ? <Promo /> : null}
       </StickyWrapper>
       <FeedWrapper>
         <div className="flex w-full flex-col items-center">

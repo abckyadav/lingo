@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import Promo from "../../../components/promo";
 
 type LeaderboardPageProps = {
   className?: string;
@@ -49,6 +50,8 @@ export default async function LeaderboardPage({
           points={userProgress.points}
           hasActiveSubscription={isPro}
         />
+
+        {!isPro ? <Promo /> : null}
       </StickyWrapper>
       <FeedWrapper>
         <div className="flex w-full flex-col items-center">
