@@ -8,7 +8,7 @@ import { UNITS } from "./units";
 import { LESSONS } from "./lessons";
 import { CHALLENGES } from "./challenges";
 import { CHALLENGE_OPTIONS } from "./challenge-options";
-import { CHALLENGE_TYPE_ENUM } from "@/lib/utils";
+import { CHALLENGE_TYPE_ENUM } from "@/lib/constants";
 
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });

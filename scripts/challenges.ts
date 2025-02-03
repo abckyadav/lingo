@@ -1,4 +1,4 @@
-import { CHALLENGE_TYPE_ENUM } from "@/lib/utils";
+import { CHALLENGE_TYPE_ENUM } from "@/lib/constants";
 
 export const CHALLENGES = [
   {
