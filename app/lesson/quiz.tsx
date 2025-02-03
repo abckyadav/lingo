@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 import { cn } from "@/lib/utils";
 import { DEFAULT_HEARTS, POINTS_PER_CHALLENGE } from "@/lib/constants";
 import { useState, useTransition } from "react";
@@ -26,12 +26,15 @@ type QuizProps = {
   initialPercentage: number;
   initialHearts: number;
   initialLessonId: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  userSubscription: any; //TODO: replace with subscription DB type
   initialLessonChallenges: (typeof challenges.$inferSelect & {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
+  userSubscription:
+    | (typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
 };
 
 export default function Quiz({
