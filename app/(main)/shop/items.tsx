@@ -39,6 +39,7 @@ export default function Items({
   };
 
   const onUpgrade = () => {
+    toast.loading("Please wait...");
     startTransition(() => {
       createStripeUrl()
         .then((response) => {
@@ -84,8 +85,8 @@ export default function Items({
           </p>
         </div>
 
-        <Button onClick={onUpgrade} disabled={pending || hasActiveSubscription}>
-          {hasActiveSubscription ? "active" : "upgrade"}
+        <Button onClick={onUpgrade} disabled={pending}>
+          {hasActiveSubscription ? "settings" : "upgrade"}
         </Button>
       </div>
     </ul>

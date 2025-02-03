@@ -37,7 +37,7 @@ export default async function ShopPage({ className, style }: ShopPageProps) {
           activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts}
           points={userProgress.points}
-          hasActiveSubscription={false}
+          hasActiveSubscription={isPro}
         />
       </StickyWrapper>
       <FeedWrapper>
