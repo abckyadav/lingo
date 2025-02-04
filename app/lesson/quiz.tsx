@@ -133,7 +133,11 @@ export default function Quiz({
               setHearts((prev) => Math.min(prev + 1, DEFAULT_HEARTS));
             }
           })
-          .catch(() => toast.error("Something went wrong. Please try again."));
+          .catch((error) =>
+            toast.error(
+              "Something went wrong. Please try again. " + error.message,
+            ),
+          );
       });
     } else {
       startTransition(() => {
@@ -151,7 +155,11 @@ export default function Quiz({
               setHearts((prev) => Math.max(prev - 1, 0));
             }
           })
-          .catch(() => toast.error("Something went wrong. Please try again."));
+          .catch((error) =>
+            toast.error(
+              "Something went wrong. Please try again. " + error.message,
+            ),
+          );
       });
     }
   };

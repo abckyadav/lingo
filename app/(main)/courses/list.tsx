@@ -32,17 +32,19 @@ export default function List({
     }
 
     startTransition(() => {
-      upsertUserProgress(id).catch(() =>
-        toast.error("Something went wrong while updating your progress.")
-      );
+      upsertUserProgress(id).catch((error) => {
+        toast.error(
+          "Something went wrong while updating your progress. " + error.message,
+        );
+      });
     });
   };
 
   return (
     <div
       className={cn(
-        "pt-6 grid grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-4",
-        className
+        "grid grid-cols-2 gap-4 pt-6 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))]",
+        className,
       )}
       style={style}
     >

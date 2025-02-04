@@ -32,8 +32,10 @@ export default function Items({
     }
 
     startTransition(() => {
-      refillHearts().catch(() =>
-        toast.error("Something went wrong, while refill hearts"),
+      refillHearts().catch((error) =>
+        toast.error(
+          "Something went wrong, while refill hearts " + error.message,
+        ),
       );
     });
   };
@@ -47,7 +49,9 @@ export default function Items({
             window.location.href = response.data;
           }
         })
-        .catch(() => toast.error("Something went wrong, while upgrade"));
+        .catch((error) =>
+          toast.error("Something went wrong, while upgrade " + error.message),
+        );
     });
   };
 
