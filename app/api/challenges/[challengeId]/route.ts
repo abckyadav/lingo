@@ -1,0 +1,81 @@
+import db from "@/db/drizzle";
+import { challenges } from "@/db/schema";
+import { getIsAdmin } from "@/lib/admin";
+import { eq } from "drizzle-orm";
+import { NextResponse } from "next/server";
+
+export const GET = async (
+  req: Request,
+  { params }: { params: { challengeId: number } },
+) => {
+  const isAdmin = await getIsAdmin();
+
+  if (!isAdmin) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
+
+  try {
+    const data = await db.query.challenges.findFirst({
+      where: eq(challenges.id, params.challengeId),
+    });
+
+    return NextResponse.json(data);
+  } catch (error: unknown) {
+    return new NextResponse(JSON.stringify(error), {
+      status: 400,
+    });
+  }
+};
+
+export const PUT = async (
+  req: Request,
+  { params }: { params: { challengeId: number } },
+) => {
+  const isAdmin = await getIsAdmin();
+
+  if (!isAdmin) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
+
+  const body = await req.json();
+
+  try {
+    const data = await db
+      .update(challenges)
+      .set({
+        ...body,
+      })
+      .where(eq(challenges.id, params.challengeId))
+      .returning();
+
+    return NextResponse.json(data[0]);
+  } catch (error: unknown) {
+    return new NextResponse(JSON.stringify(error), {
+      status: 400,
+    });
+  }
+};
+
+export const DELETE = async (
+  req: Request,
+  { params }: { params: { challengeId: number } },
+) => {
+  const isAdmin = await getIsAdmin();
+
+  if (!isAdmin) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
+
+  try {
+    const data = await db
+      .delete(challenges)
+      .where(eq(challenges.id, params.challengeId))
+      .returning();
+
+    return NextResponse.json(data[0]);
+  } catch (error: unknown) {
+    return new NextResponse(JSON.stringify(error), {
+      status: 400,
+    });
+  }
+};
