@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import Promo from "../../../components/promo";
+import Quests from "@/components/quests";
 
 type LeaderboardPageProps = {
   className?: string;
@@ -52,6 +53,8 @@ export default async function LeaderboardPage({
         />
 
         {!isPro ? <Promo /> : null}
+
+        <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>
         <div className="flex w-full flex-col items-center">

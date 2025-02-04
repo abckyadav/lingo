@@ -64,7 +64,7 @@ export default async function LearnPage({ className, style }: LearnPageProps) {
           hasActiveSubscription={isPro}
         />
         {!isPro ? <Promo /> : null}
-        <Quests />
+        <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />
