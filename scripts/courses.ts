@@ -7,7 +7,7 @@ export const COURSES = [
   {
     id: 2,
     title: "Indian",
-    imageSrc: "/IN.svg",
+    imageSrc: "/in.svg",
   },
   {
     id: 3,
