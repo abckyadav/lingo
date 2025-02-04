@@ -12,7 +12,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   const { userId } = await auth();
 
   if (!userId) {
-    throw new Error("Unauthorised");
+    throw new Error("Unauthorized");
   }
 
   const currentUserProgress = await getUserProgress();

@@ -12,7 +12,7 @@ export const createStripeUrl = async () => {
   const user = await currentUser();
 
   if (!userId || !user) {
-    throw new Error("Unauthorised");
+    throw new Error("Unauthorized");
   }
 
   const userSubscription = await getUserSubscription();
