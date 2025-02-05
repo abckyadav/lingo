@@ -30,7 +30,7 @@ export default function Challenge({
         type === "ASSIST" && "grid-cols-1",
         type === "SELECT" &&
           "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        className
+        className,
       )}
       style={style}
     >

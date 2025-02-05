@@ -11,12 +11,12 @@ export default function Footer({ className, style }: FooterProps) {
   return (
     <div
       className={cn(
-        "hidden lg:block h-20 w-full border-t-2 border-slate-200 p-2",
-        className
+        "hidden h-20 w-full border-t-2 border-slate-200 p-2 lg:block",
+        className,
       )}
       style={style}
     >
-      <div className="max-w-screen-lg mx-auto flex items-center justify-evenly h-full">
+      <div className="mx-auto flex h-full max-w-screen-lg items-center justify-evenly">
         <Button size="lg" variant="ghost" className="w-full">
           <Image
             src="/in.svg"

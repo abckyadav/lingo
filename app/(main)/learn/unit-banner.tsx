@@ -19,8 +19,8 @@ export default function UnitBanner({
   return (
     <div
       className={cn(
-        "w-full rounded-xl bg-green-500 p-5 text-white flex items-center justify-between",
-        className
+        "flex w-full items-center justify-between rounded-xl bg-green-500 p-5 text-white",
+        className,
       )}
       style={style}
     >
@@ -33,7 +33,7 @@ export default function UnitBanner({
         <Button
           size="lg"
           variant="secondary"
-          className="hidden  2xl:flex border-2 border-b-4 active:border-b-2"
+          className="hidden border-2 border-b-4 active:border-b-2 2xl:flex"
         >
           <NotebookText className="mr-2" />
           Continue

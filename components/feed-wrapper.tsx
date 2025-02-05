@@ -12,7 +12,7 @@ export default function FeedWrapper({
   children,
 }: FeedWrapperProps) {
   return (
-    <div className={cn("flex-1 relative top-0 pb-10", className)} style={style}>
+    <div className={cn("relative top-0 flex-1 pb-10", className)} style={style}>
       {children}
     </div>
   );

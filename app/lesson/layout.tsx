@@ -12,8 +12,8 @@ export default function LessonLayout({
   children,
 }: LessonLayoutProps) {
   return (
-    <div className={cn("flex flex-col h-full", className)} style={style}>
-      <div className="flex flex-col h-full w-full">{children}</div>
+    <div className={cn("flex h-full flex-col", className)} style={style}>
+      <div className="flex h-full w-full flex-col">{children}</div>
     </div>
   );
 }

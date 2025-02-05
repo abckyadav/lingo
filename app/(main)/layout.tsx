@@ -18,10 +18,10 @@ export default function MainLayout({
       <MobileHeader />
       <Sidebar className="hidden lg:flex" />
       <main
-        className={cn("lg:pl-[256px] h-full pt-[50px] lg:pt-0", className)}
+        className={cn("h-full pt-[50px] lg:pl-[256px] lg:pt-0", className)}
         style={style}
       >
-        <div className="max-w-[1056px] mx-auto pt-6 h-full">{children}</div>
+        <div className="mx-auto h-full max-w-[1056px] pt-6">{children}</div>
       </main>
     </>
   );

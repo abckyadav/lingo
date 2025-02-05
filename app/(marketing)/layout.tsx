@@ -14,7 +14,7 @@ export default function MarketingLayout({
   style,
 }: MarketingLayoutProps) {
   return (
-    <div className={cn("min-h-screen flex flex-col ", className)} style={style}>
+    <div className={cn("flex min-h-screen flex-col", className)} style={style}>
       <Header />
       <main className="flex flex-1 flex-col items-center justify-center">
         {children}

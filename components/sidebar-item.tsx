@@ -27,7 +27,7 @@ export default function SidebarItem({
     <div className={cn("", className)} style={style}>
       <Button
         variant={active ? "sidebarOutline" : "sidebar"}
-        className="justify-start h-[52px] w-full"
+        className="h-[52px] w-full justify-start"
         asChild
       >
         <Link href={href}>

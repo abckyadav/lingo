@@ -9,12 +9,12 @@ export default function Loading({ className, style }: LoadingProps) {
   return (
     <div
       className={cn(
-        "h-full w-full flex items-center justify-center",
-        className
+        "flex h-full w-full items-center justify-center",
+        className,
       )}
       style={style}
     >
-      <Loader className="h-6 w-6 text-muted-foreground animate-spin" />
+      <Loader className="h-6 w-6 animate-spin text-muted-foreground" />
     </div>
   );
 }

@@ -14,12 +14,12 @@ export default function StickyWrapper({
   return (
     <div
       className={cn(
-        "hidden lg:block w-[368px] sticky self-end bottom-6",
-        className
+        "sticky bottom-6 hidden w-[368px] self-end lg:block",
+        className,
       )}
       style={style}
     >
-      <div className="min-h-[calc(100vh-48px)] sticky top-6 flex flex-col gap-y-4">
+      <div className="sticky top-6 flex min-h-[calc(100vh-48px)] flex-col gap-y-4">
         {children}
       </div>
     </div>
