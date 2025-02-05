@@ -21,12 +21,21 @@ export default async function CoursesPage({
 
   return (
     <div
-      className={cn("h-full max-w-[912px] px-3 mx-auto", className)}
+      className={cn("mx-auto h-full max-w-[912px] px-3", className)}
       style={style}
     >
       <h1 className="text-2xl font-bold text-neutral-700">
-        Language Courses
-        <List courses={courses} activeCourseId={userProgress?.activeCourseId} />
+        {courses && courses.length > 0 ? (
+          <div>
+            Language Courses
+            <List
+              courses={courses}
+              activeCourseId={userProgress?.activeCourseId}
+            />
+          </div>
+        ) : (
+          <div className="">No Courses Found!</div>
+        )}
       </h1>
     </div>
   );
