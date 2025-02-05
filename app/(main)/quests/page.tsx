@@ -4,20 +4,11 @@ import { Progress } from "@/components/ui/progress";
 import UserProgress from "@/components/user-progress";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
 import { QUESTS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import Promo from "../../../components/promo";
 
-type QuestsPageProps = {
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-export default async function QuestsPage({
-  className,
-  style,
-}: QuestsPageProps) {
+export default async function QuestsPage() {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
 
@@ -33,10 +24,7 @@ export default async function QuestsPage({
   const isPro = !!userSubscription?.isActive;
 
   return (
-    <div
-      className={cn("flex flex-row-reverse gap-[48px] px-6", className)}
-      style={style}
-    >
+    <div className={"flex flex-row-reverse gap-[48px] px-6"}>
       <StickyWrapper>
         <UserProgress
           activeCourse={userProgress.activeCourse}

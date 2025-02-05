@@ -1,6 +1,5 @@
 import FeedWrapper from "@/components/feed-wrapper";
 import StickyWrapper from "@/components/sticky-wrapper";
-import { cn } from "@/lib/utils";
 import Header from "./header";
 import UserProgress from "@/components/user-progress";
 import {
@@ -15,12 +14,7 @@ import Unit from "./unit";
 import Promo from "../../../components/promo";
 import Quests from "@/components/quests";
 
-type LearnPageProps = {
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-export default async function LearnPage({ className, style }: LearnPageProps) {
+export default async function LearnPage() {
   const unitsData = getUnits();
   const userProgressData = getUserProgress();
   const courseProgressData = getCourseProgress();
@@ -52,10 +46,7 @@ export default async function LearnPage({ className, style }: LearnPageProps) {
   const isPro = !!userSubscription?.isActive;
 
   return (
-    <div
-      className={cn("flex flex-row-reverse gap-[48px] px-6", className)}
-      style={style}
-    >
+    <div className={"flex flex-row-reverse gap-[48px] px-6"}>
       <StickyWrapper>
         <UserProgress
           activeCourse={userProgress.activeCourse}

@@ -2,19 +2,13 @@ import FeedWrapper from "@/components/feed-wrapper";
 import StickyWrapper from "@/components/sticky-wrapper";
 import UserProgress from "@/components/user-progress";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import Items from "./items";
 import Promo from "../../../components/promo";
 import Quests from "@/components/quests";
 
-type ShopPageProps = {
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-export default async function ShopPage({ className, style }: ShopPageProps) {
+export default async function ShopPage() {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
 
@@ -30,10 +24,7 @@ export default async function ShopPage({ className, style }: ShopPageProps) {
   const isPro = !!userSubscription?.isActive;
 
   return (
-    <div
-      className={cn("flex flex-row-reverse gap-[48px] px-6", className)}
-      style={style}
-    >
+    <div className={"flex flex-row-reverse gap-[48px] px-6"}>
       <StickyWrapper>
         <UserProgress
           activeCourse={userProgress.activeCourse}

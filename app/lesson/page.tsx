@@ -1,17 +1,8 @@
 import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
-import { cn } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import Quiz from "./quiz";
 
-type LessonPageProps = {
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-export default async function LessonPage({
-  className,
-  style,
-}: LessonPageProps) {
+export default async function LessonPage() {
   const lessonData = getLesson();
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
@@ -33,8 +24,6 @@ export default async function LessonPage({
 
   return (
     <Quiz
-      className={cn("", className)}
-      style={style}
       initialLessonId={lesson.id}
       initialLessonChallenges={lesson.challenges}
       initialHearts={userProgress.hearts}

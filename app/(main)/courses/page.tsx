@@ -1,16 +1,7 @@
-import { cn } from "@/lib/utils";
 import { getCourses, getUserProgress } from "@/db/queries";
 import List from "./list";
 
-type CoursesPageProps = {
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-export default async function CoursesPage({
-  className,
-  style,
-}: CoursesPageProps) {
+export default async function CoursesPage() {
   const coursesData = getCourses();
   const userProgressData = getUserProgress();
 
@@ -20,10 +11,7 @@ export default async function CoursesPage({
   ]);
 
   return (
-    <div
-      className={cn("mx-auto h-full max-w-[912px] px-3", className)}
-      style={style}
-    >
+    <div className={"mx-auto h-full max-w-[912px] px-3"}>
       <h1 className="text-2xl font-bold text-neutral-700">
         {courses && courses.length > 0 ? (
           <div>
