@@ -10,7 +10,7 @@ import PracticeModal from "@/components/modals/practice-modal";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lingo - The best language learning app",
+  title: "Lingo - Interactive platform for language learning.",
   description: "Learn language with ease",
 };
 
