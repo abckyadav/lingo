@@ -23,6 +23,7 @@ export default function Card({
   disabled,
   active,
 }: CardProps) {
+  console.log("imageSrc:", imageSrc);
   return (
     <div
       className={cn(

@@ -6,8 +6,8 @@ export const COURSES = [
   },
   {
     id: 2,
-    title: "Indian",
-    imageSrc: "/in.svg",
+    title: "Hindi",
+    imageSrc: "/hi.svg",
   },
   {
     id: 3,

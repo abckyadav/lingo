@@ -19,13 +19,13 @@ export default function Footer({ className, style }: FooterProps) {
       <div className="mx-auto flex h-full max-w-screen-lg items-center justify-evenly">
         <Button size="lg" variant="ghost" className="w-full">
           <Image
-            src="/in.svg"
-            alt="India"
+            src="/hi.svg"
+            alt="Hindi"
             height={32}
             width={40}
             className="mr-4 rounded-md"
           />
-          India
+          Hindi
         </Button>
         <Button size="lg" variant="ghost" className="w-full">
           <Image
