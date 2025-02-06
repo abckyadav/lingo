@@ -179,21 +179,7 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/learn
 
 ```
 
-5. Admin login id for testing purpose
-
-email id -
-
-```
-vadih57177@fundapk.com
-```
-
-password -
-
-```
-Admin@2025Admin
-```
-
-6. Obtain Clerk Authentication Keys
+5. Obtain Clerk Authentication Keys
 
    1. **Source**: Clerk Dashboard or Settings Page
    2. **Procedure**:
@@ -202,7 +188,7 @@ Admin@2025Admin
       - Look for the section related to authentication keys.
       - Copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` provided in that section.
 
-7. Retrieve Neon Database URI
+6. Retrieve Neon Database URI
 
    1. **Source**: Database Provider (e.g., Neon, PostgreSQL)
    2. **Procedure**:
@@ -211,7 +197,7 @@ Admin@2025Admin
       - Replace `<user>`, `<password>`, `<host>`, and `<port>` placeholders in the URI with your actual database credentials.
       - Ensure to include `?sslmode=require` at the end of the URI for SSL mode requirement.
 
-8. Fetch Stripe API Key and Webhook Secret
+7. Fetch Stripe API Key and Webhook Secret
 
    1. **Source**: Stripe Dashboard
    2. **Procedure**:
@@ -220,27 +206,27 @@ Admin@2025Admin
       - Find the section related to API keys and webhook secrets.
       - Copy the `STRIPE_API_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET`.
 
-9. Specify Public App URL
+8. Specify Public App URL
 
    1. **Procedure**:
       - Replace `http://localhost:3000` with the URL of your deployed application.
 
-10. Identify Clerk Admin User IDs
+9. Identify Clerk Admin User IDs
 
-    1. **Source**: Clerk Dashboard or Settings Page
-    2. **Procedure**:
-       - Log in to your Clerk account.
-       - Navigate to the dashboard or settings page.
-       - Find the section related to admin user IDs.
-       - Copy the user IDs provided, ensuring they are separated by commas and spaces.
+   1. **Source**: Clerk Dashboard or Settings Page
+   2. **Procedure**:
+      - Log in to your Clerk account.
+      - Navigate to the dashboard or settings page.
+      - Find the section related to admin user IDs.
+      - Copy the user IDs provided, ensuring they are separated by commas and spaces.
 
-11. Save and Secure:
+10. Save and Secure:
 
     - Save the changes to the `.env` file.
 
-12. Install Project Dependencies using `bun install`
+11. Install Project Dependencies using `bun install`
 
-13. Run the Seed Script:
+12. Run the Seed Script:
 
 In the same terminal, run the following command to execute the seed script:
 
@@ -249,13 +235,13 @@ bun db:push && bun db:prod
 
 ```
 
-14. If any error occurs you can also reset the database usin `bun db:reset`
+13. If any error occurs you can also reset the database usin `bun db:reset`
 
-15. Verify Data in Database:
+14. Verify Data in Database:
 
 Once the script completes, check your database to ensure that the courses, units, lessons, challenges and challenge-options data has been successfully seeded.
 
-16. Now app is fully configured 👍 and you can start using this app using `bun dev`.
+15. Now app is fully configured 👍 and you can start using this app using `bun dev`.
 
 **NOTE:** Please make sure to keep your API keys and configuration values secure and do not expose them publicly.
 
